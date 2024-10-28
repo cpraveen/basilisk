@@ -1,10 +1,18 @@
 CFLAGS=-O2 -Wall
-TARGETS=main
+TARGETS=bump
 
 all: $(TARGETS)
 
-main: main.c
-	qcc $(CFLAGS) -o main main.c -lm
+bump: bump.c
+	qcc $(CFLAGS) -o bump bump.c -lm
+
+run: bump
+	./bump > out.ppm 2> log.txt
+	magick out.ppm out.gif
+	magick grid.ppm grid.gif
 
 clean:
 	rm -f $(TARGETS)
+
+allclean:
+	rm -f $(TARGETS) *.ppm *.gif

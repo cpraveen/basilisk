@@ -31,6 +31,19 @@ export BASILISK=/path/to/basilisk/src
 export PATH=$PATH:$BASILISK
 ```
 
+If you want to use `view.h`, install opengl; on mac with homebrew, do 
+
+```shell
+brew install mesa-glu
+cd $BASILISK/gl
+CFLAGS=-I/opt/homebrew/include make libglutils.a libfb_osmesa.a
+```
+
+You will also need other softwares like
+
+* Gnuplot: for plotting
+* Imagemagick: to convert ppm to gif, mp4, etc.
+
 ## Two-phase methods
 
 VOF:
