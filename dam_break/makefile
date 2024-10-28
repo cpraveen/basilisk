@@ -1,10 +1,19 @@
-all: vof levelset clsvof
+CFLAGS=-O2 -Wall
+TARGETS=vof levelset clsvof
+
+all: $(TARGETS)
 
 vof: main.c
-	qcc -g -O2 -Wall -o vof main.c -lm
+	qcc $(CFLAGS) -o vof main.c -lm
 
 levelset: main.c
-	qcc -g -O2 -Wall -DLEVELSET=1 -o levelset main.c -lm
+	qcc $(CFLAGS) -DLEVELSET=1 -o levelset main.c -lm
 
 clsvof: main.c
-	qcc -g -O2 -Wall -DLEVELSET=1 -DCLSVOF=1 -o clsvof main.c -lm
+	qcc $(CFLAGS) -DLEVELSET=1 -DCLSVOF=1 -o clsvof main.c -lm
+
+clean:
+	rm -f $(TARGETS)
+
+allclean:
+	rm -f $(TARGETS) f_*.txt *.png *.mp4
