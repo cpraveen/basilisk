@@ -15,8 +15,7 @@
 #define LEVEL 8
 
 // Boundary conditions
-u.n[bottom] = dirichlet(0);
-u.t[bottom] = neumann(0);
+// All sides use the default symmetry boundary condition, which is a slip wall.
 
 //------------------------------------------------------------------------------
 int main()
@@ -32,34 +31,44 @@ int main()
 }
 
 //------------------------------------------------------------------------------
+// Exact distance function to the interface
+//------------------------------------------------------------------------------
+double distance(const double x, const double y)
+{
+   double a;
+
+   if(y <= 1 && x <= WIDTH/2)
+   {
+      a = min(1 - y, WIDTH/2 - x);
+   }
+   else if(y > 1 && x <= WIDTH/2)
+   {
+      a = 1 - y;
+   }
+   else if(x > WIDTH/2 && y < 1)
+   {
+      a = WIDTH/2 - x;
+   }
+   else
+   {
+      a = -sqrt(sq(x - WIDTH/2) + sq(y - 1));
+   }
+
+   return a;
+}
+
+//------------------------------------------------------------------------------
 event init (t = 0)
 {
    mask (y >  WIDTH/4 ? top : none);
 
    #if LEVELSET
    foreach()
-   {
-      if(y <= 1 && x <= WIDTH/2)
-      {
-         d[] = min(1 - y, WIDTH/2 - x);
-      }
-      else if(y > 1 && x <= WIDTH/2)
-      {
-         d[] = 1 - y;
-      }
-      else if(x > WIDTH/2 && y < 1)
-      {
-         d[] = WIDTH/2 - x;
-      }
-      else
-      {
-         d[] = -sqrt(sq(x - WIDTH/2) + sq(y - 1));
-      }
-   }
+      d[] = distance(x, y);
    // Compute volume fraction since we need it to initialize velocity
    vertex scalar phi[];
    foreach_vertex()
-      phi[] = (d[] + d[-1] + d[0,-1] + d[-1,-1])/4.0;
+      phi[] = distance(x, y);
    fractions (phi, f);
    output_ppm(d, file="d0.png", n=2048, box={{0,0},{10,2.5}});
    #else
@@ -70,7 +79,7 @@ event init (t = 0)
 
    foreach()
    {
-      u.x[] = f[] * (1.0e-8);
+      u.x[] = f[] * 1.0e-8;
       u.y[] = 0.0;
    }
 
