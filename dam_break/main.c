@@ -11,6 +11,12 @@
    #endif
 #endif
 
+#if LEVELSET
+   #include "integral.h"
+#else
+   #include "tension.h"
+#endif
+
 #define WIDTH 10.0
 #define LEVEL 8
 
@@ -22,6 +28,14 @@ int main()
 {
    rho1 = 1.0,    mu1 = 1.0/1000.0;
    rho2 = 1.0e-3, mu2 = mu1/100.0;
+
+   #if LEVELSET
+   const scalar sigma[] = 0.0;
+   d.sigmaf = sigma;
+   #else
+   f.sigma = 0.0;
+   #endif
+
    DT = 1.0e-2;
 
    origin (0.0, 0.0);

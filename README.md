@@ -36,13 +36,15 @@ You will also need other softwares like
 * Gnuplot: for plotting
 * Imagemagick: to convert ppm to gif, mp4, etc.
 
-## Two-phase methods
+## Documentation
 
-VOF:
-http://basilisk.fr/src/two-phase.h
-
-Levelset:
-http://basilisk.fr/src/two-phase-levelset.h
-
-VOF + levelset:
-http://basilisk.fr/src/two-phase-clsvof.h
+* NS centered solver
+  * http://basilisk.fr/src/navier-stokes/centered.h
+  * http://basilisk.fr/sandbox/ecipriano/doc/centered
+* Two-phase flow methods
+  * VOF: http://basilisk.fr/src/two-phase.h
+  * Levelset: http://basilisk.fr/src/two-phase-levelset.h
+  * VOF + levelset: http://basilisk.fr/src/two-phase-clsvof.h
+* Surface tension
+  * http://basilisk.fr/src/tension.h
+  * Integral formulation: http://basilisk.fr/src/integral.h
