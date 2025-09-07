@@ -36,6 +36,12 @@ You will also need other softwares like
 * Gnuplot: for plotting
 * Imagemagick: to convert ppm to gif, mp4, etc.
 
+## Examples
+
+* [Vorticity-stream function formulation: decaying 2D turbulence](http://basilisk.fr/src/examples/turbulence.c)
+* [Another tutorial](http://basilisk.fr/sandbox/jmf/tutorial): heat equation
+* [Tutorial BGUM2019](http://basilisk.fr/sandbox/tutorial_bgum2019/README)
+
 ## Documentation
 
 * NS centered solver
