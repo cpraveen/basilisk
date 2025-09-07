@@ -1,15 +1,13 @@
+/*
+ Solves
+     Laplace(u) = f with u=0 on boundary
+ */
 #include "utils.h"
 #include "poisson.h"
 #include "vtk.h"
 
+// Grid will be 2^L x 2^L where L=LEVEL
 #define LEVEL  8
-
-scalar u[], f[];
-
-u[left]   = dirichlet(0);
-u[right]  = dirichlet(0);
-u[bottom] = dirichlet(0);
-u[top]    = dirichlet(0);
 
 void mg_print (mgstats mg)
 {
@@ -22,9 +20,18 @@ void mg_print (mgstats mg)
 
 int main()
 {
-   origin(0.0, 0.0);
+   origin(0.0, 0.0); // [0,1]x[0,1]
    init_grid(1 << LEVEL);
 
+   scalar u[], f[];
+
+   // Boundary conditions
+   u[left]   = dirichlet(0);
+   u[right]  = dirichlet(0);
+   u[bottom] = dirichlet(0);
+   u[top]    = dirichlet(0);
+
+   // Set rhs function
    foreach()
    {
       f[] = -1.0;
@@ -37,4 +44,3 @@ int main()
    output_vtk({u}, 1<<LEVEL, fp, true);
    fclose(fp);
 }
-
