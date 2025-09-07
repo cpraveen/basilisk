@@ -3,24 +3,28 @@ We solve the two-dimensional incompressible Euler equations using a
 vorticity--streamfunction formulation. */
 
 #include "navier-stokes/stream.h"
+#include "diffusion.h"
 
-const double MU = 1.0/1000.0;
+const double rho = 80.0;
+const double delta = 0.05;  
+const double Rey = 1000.0;
+const double MU = 1.0/Rey;
+const face vector mu[] = {MU, MU};
 
-double rho = 80.0;
-double delta = 0.05;  
 int maxlevel = 7;
 
+//-----------------------------------------------------------------------------
 int main (int argc, char * argv[])
 {
   if (argc > 1)
     maxlevel = atoi(argv[1]);
   foreach_dimension()
     periodic(right);
-  //mu[] = {MU,MU};
   N = 1 << maxlevel;
   run();
 }
 
+//-----------------------------------------------------------------------------
 event init (i = 0)
 {
   foreach ()
@@ -35,6 +39,13 @@ event init (i = 0)
   }
 }
 
+//-----------------------------------------------------------------------------
+event tracer_diffusion(i++) 
+{
+  diffusion (psi, dt, mu);
+}
+
+//-----------------------------------------------------------------------------
 event output (t += 0.05; t <= 1.0)
 {
   //output_ppm (omega, n = 1024, min = -0.3, max = 0.3, file = "omega.mp4");
