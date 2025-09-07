@@ -1,5 +1,11 @@
 # Dam break using Navier-Stokes
 
+* `distance.py`:
+* `test_init.c`:
+* `main.c`: Solves dam break problem
+
+## Run dam break
+
 ```shell
 make
 ```
