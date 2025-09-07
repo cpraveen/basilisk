@@ -4,7 +4,7 @@ TARGETS=poisson
 all: $(TARGETS)
 
 poisson: main.c
-	qcc $(CFLAGS) -o poisson main.c -lm
+	qcc $(CFLAGS) -o $@ $< -lm
 
 clean:
 	rm -f $(TARGETS)
