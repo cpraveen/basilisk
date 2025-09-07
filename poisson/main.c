@@ -12,9 +12,9 @@
 void mg_print (mgstats mg)
 {
    if (mg.i > 0 && mg.resa > 0.)
-      printf ("Iter=%d, ||f||=%g, ||u||=%g, %g, nrelax=%d\n", 
+      printf ("Iter=%d, ||f||=%g, ||u||=%g, ||u||/||f||=%g, nrelax=%d\n", 
               mg.i, mg.resb, mg.resa,
-              mg.resb > 0 ? exp (log (mg.resb/mg.resa)/mg.i) : 0.0,
+              mg.resb > 0 ? mg.resa/mg.resb : mg.resa,
               mg.nrelax);
 }
 
