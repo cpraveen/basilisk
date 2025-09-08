@@ -1,7 +1,3 @@
-/**
-We solve the two-dimensional incompressible Euler equations using a
-vorticity--streamfunction formulation. */
-
 #include "navier-stokes/stream.h"
 #include "diffusion.h"
 
