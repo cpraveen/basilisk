@@ -40,6 +40,8 @@ You will also need other softwares like
 
 * [Vorticity-stream function formulation: decaying 2D turbulence](http://basilisk.fr/src/examples/turbulence.c)
 * [Another tutorial](http://basilisk.fr/sandbox/jmf/tutorial): heat equation
+* [Another heat equation](http://basilisk.fr/sandbox/diffusion.c)
+* [Finite differencing, advection](http://basilisk.fr/sandbox/course/)
 * [Tutorial BGUM2019](http://basilisk.fr/sandbox/tutorial_bgum2019/README)
 
 ## Documentation
@@ -55,4 +57,3 @@ You will also need other softwares like
   * http://basilisk.fr/src/tension.h
   * Integral formulation: http://basilisk.fr/src/integral.h
 * H. Huang: [Documentation](https://github.com/Langford-H/Basilisk-Documentation)
-* E. Cipriano: [centered.h](http://basilisk.fr/sandbox/ecipriano/doc/centered)
