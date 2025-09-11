@@ -1,3 +1,5 @@
+CC=qcc
+CFLAGS=-lm
 TARGETS=heat2da heat2db
 
 all: $(TARGETS)
