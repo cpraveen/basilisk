@@ -1,15 +1,14 @@
-#CC=/opt/homebrew/opt/llvm/bin/clang
-CFLAGS=-Xclang -fopenmp -O2 -Wall -disable-dimensions -I/opt/homebrew/include
-LDFLAGS=-L/opt/homebrew/lib -lomp
+CFLAGS=-O2 -Wall -disable-dimensions
+LDFLAGS=-lm
 TARGETS=dsl
 
 all: $(TARGETS)
 
 dsl: main.c
-	qcc $(CFLAGS) -o $@ $< -lm $(LDFLAGS)
+	qcc $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:
 	rm -f $(TARGETS)
 
 allclean:
-	rm -f $(TARGETS) f_*.txt *.png *.mp4
+	rm -f $(TARGETS) omega.mp4
