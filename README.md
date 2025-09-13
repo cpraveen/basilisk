@@ -57,3 +57,22 @@ You will also need other softwares like
   * http://basilisk.fr/src/tension.h
   * Integral formulation: http://basilisk.fr/src/integral.h
 * H. Huang: [Documentation](https://github.com/Langford-H/Basilisk-Documentation)
+
+## Using openmp on mac
+
+Install llvm
+
+```shell
+brew install llvm
+```
+
+When compiling your application, use a makefile like this
+
+```makefile
+CC=/opt/homebrew/opt/llvm/bin/clang
+CFLAGS=-Xclang -fopenmp -O2 -Wall -I/opt/homebrew/include
+LDFLAGS=-lm -L/opt/homebrew/lib -lomp
+
+foo: foo.c
+    qcc $(CFLAGS) -o $@ $< $(LDFLAGS)
+```
